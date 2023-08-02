@@ -12,6 +12,7 @@ import {
   Box,
 } from "@mui/material";
 import { route } from "./Navigation/route";
+import { NewUserJson } from "./NewUserJson";
 
 interface Country {
   country: string;
@@ -56,51 +57,56 @@ export const NewUser: React.FC<NewUserProps> = ({ displayCountry }) => {
   };
 
   return (
-    <Paper style={{ padding: "1rem", margin: "1rem 0" }}>
-      <form onSubmit={handleSubmit}>
-        <Box>
-          <TextField
-            label="Name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            sx={{ width: "100%" }}
-          />
-        </Box>
-        <Box>
-          <TextField
-            label="Phone Number"
-            value={phoneNumber}
-            onChange={(event) => setPhoneNumber(event.target.value)}
-            sx={{ width: "100%" }}
-          />
-        </Box>
-        {displayCountry && (
-          <Box paddingY={1}>
-            <FormControl sx={{ width: "100%" }}>
-              <InputLabel id="country-label">Country</InputLabel>
-              <Select
-                labelId="country-label"
-                id="country-select"
-                value={countryId}
-                onChange={(event) => setCountryId(event.target.value as number)}
-                sx={{ width: "100%" }}
-              >
-                {countries.map((country) => (
-                  <MenuItem key={country.countryId} value={country.countryId}>
-                    {country.country}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+    <Box>
+      <Paper style={{ padding: "1rem", margin: "1rem 0" }}>
+        <form onSubmit={handleSubmit}>
+          <Box>
+            <TextField
+              label="Name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              sx={{ width: "100%" }}
+            />
           </Box>
-        )}
+          <Box>
+            <TextField
+              label="Phone Number"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+              sx={{ width: "100%" }}
+            />
+          </Box>
+          {displayCountry && (
+            <Box paddingY={1}>
+              <FormControl sx={{ width: "100%" }}>
+                <InputLabel id="country-label">Country</InputLabel>
+                <Select
+                  labelId="country-label"
+                  id="country-select"
+                  value={countryId}
+                  onChange={(event) =>
+                    setCountryId(event.target.value as number)
+                  }
+                  sx={{ width: "100%" }}
+                >
+                  {countries.map((country) => (
+                    <MenuItem key={country.countryId} value={country.countryId}>
+                      {country.country}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          )}
 
-        <Box marginTop={2}>
-          <Button type="submit" variant="contained" sx={{ width: "100%" }}>
-            Submit
-          </Button>
-        </Box>
-      </form>
-    </Paper>
+          <Box marginTop={2}>
+            <Button type="submit" variant="contained" sx={{ width: "100%" }}>
+              Submit
+            </Button>
+          </Box>
+        </form>
+      </Paper>
+      <NewUserJson displayCountry={displayCountry} />
+    </Box>
   );
 };

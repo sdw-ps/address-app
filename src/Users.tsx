@@ -83,7 +83,7 @@ export const Users: React.FC<UsersProps> = ({ displayCountry }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <UsersJson />
+      <UsersJson displayCountry={displayCountry} />
     </Box>
   );
 };
